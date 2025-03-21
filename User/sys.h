@@ -32,6 +32,7 @@
 #include "TestUI.h"
 #include "USART23.h"
 
+#include "reckon.h"  // 添加对reckon.h的引用
 
 #include <string.h> 
 

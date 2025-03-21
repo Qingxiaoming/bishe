@@ -4,74 +4,82 @@
 #include "stm32f10x.h" 
 #include "sys.h"
 
-//row motor1
-//col motor2
+/* 常量定义区 */
+// 电机运动方向定义
+#define MOTOR_FORWARD     'F'    // 电机前进
+#define MOTOR_RETREAT     'B'    // 电机后退
+#define MOTOR_STOP        'T'    // 电机停止
 
-#define ChessBlack_COL 10
-#define ChessWrite_COL 700
-#define Chess1 660
-#define Chess2 550
-#define Chess3 370
-#define Chess4 220
-#define Chess5 130
+// 棋子位置定义
+#define CHESS_BLACK_COL   10     // 黑棋列位置
+#define CHESS_WHITE_COL   700    // 白棋列位置
 
-#define Row1 600
-#define Row2 400
-#define Row3 220
-#define COL1 200
-#define COL2 370
-#define COL3 570
+// 棋子行位置定义
+#define CHESS_POS_1       660    // 第1个棋子位置
+#define CHESS_POS_2       550    // 第2个棋子位置
+#define CHESS_POS_3       370    // 第3个棋子位置 
+#define CHESS_POS_4       220    // 第4个棋子位置
+#define CHESS_POS_5       130    // 第5个棋子位置
 
-typedef struct StrMotor{
-    int stepnum;
-    int direct;
-    int goal_1;
-    int goal_2;
-    int enable;
-    int t4_enable;
-    int mode;
-}Motor;
+// 棋盘行位置定义
+#define ROW_1             600    // 第1行位置
+#define ROW_2             400    // 第2行位置
+#define ROW_3             220    // 第3行位置
 
-extern Motor motor1,motor2;
+// 棋盘列位置定义
+#define COL_1             200    // 第1列位置
+#define COL_2             370    // 第2列位置
+#define COL_3             570    // 第3列位置
 
-extern  int dogdog,nowtime1,nowtime2;
+/* 数据结构定义区 */
+// 电机控制结构体
+typedef struct {
+    int stepnum;        // 步进电机步数
+    int direct;         // 电机运动方向
+    int goal_1;         // 第一目标位置
+    int goal_2;         // 第二目标位置
+    int enable;         // 电机使能标志
+    int t4_enable;      // 定时器4使能标志
+    int mode;           // 电机运行模式
+} Motor;
 
+/* 外部变量声明 */
+extern Motor motor1, motor2;
+extern int dogdog, nowtime1, nowtime2;
 extern int flag_gowhere;
+extern int glob_lock;
 
-void Stepper_motor_Init(int ARR,int Compare,int Period);
+/* 函数声明区 */
+// 电机通用控制接口
+typedef enum {
+    MOTOR_1 = 1,
+    MOTOR_2 = 2
+} MotorID;
 
-void Stepmotor1_Enable(void);
-void Stepmotor1_DisEnable(void);
-void Stepmotor1_forward(void);
-void Stepmotor1_retreat(void);
-void motor1_onestep(void);
+// 初始化函数
+void Stepper_motor_Init(int ARR, int Compare, int Period);
 
-void Stepmotor2_Enable(void);
-void Stepmotor2_DisEnable(void);
-void Stepmotor2_forward(void);
-void Stepmotor2_retreat(void);
-void motor2_onestep(void);
+// 统一的电机控制函数
+void Stepmotor_Enable(MotorID motor);
+void Stepmotor_DisEnable(MotorID motor);
+void Stepmotor_Forward(MotorID motor);
+void Stepmotor_Retreat(MotorID motor);
+void Motor_OneStep(MotorID motor);
 
+// 获取电机目标位置
+int GetMotorGoal(MotorID motor, int tempflag, int goal);
 
+// 统一的电机运动控制函数
+void Motor_Move(MotorID motor, int delay_1, int delay_2, int delay_3, int delay_4);
+void Motor_Chess(MotorID motor, int delay_1, int delay_2, int delay_3, int delay_4);
+
+// 调试模式
 void Motor_Debug(void);
 
-void Motor_Move_1(int delay_1,int delay_2,int delay_3,int delay_4);
-void Motor_Move_2(int delay_1,int delay_2,int delay_3,int delay_4);
+// 下棋动作函数
+void ChessMove(int mode, int delay_1, int delay_2, int delay_3, int delay_4);
 
-void Motor_Chess_1(int delay_1,int delay_2,int delay_3,int delay_4);
-void Motor_Chess_2(int delay_1,int delay_2,int delay_3,int delay_4);
-
-//第几轮 第几个目标
-int Getgoal_Motor1(int tempflag,int goal);
-int Getgoal_Motor2(int tempflag,int goal);
-
-
-
-
-void faialMove(void);
-
-
-#endif
+#endif /* __STEPPER_MOTOR_H */
 
 
 

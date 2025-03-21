@@ -1,19 +1,15 @@
-#include "Serial.h"                  // Device header
-#include "USART23.h"
+#include "USART1.h"                  // Device header
+//#include "USART23.h"
 char board[3][3] = {{'0', '0', '0'}, {'0', '0', '0'}, {'0', '0', '0'}};
 
 uint8_t flag_game=0;
 
-u16 Chess_MODE = 0;
-
-u16  MotorGoal_chess[6];
-u16  MotorGoal_place[6];
 
 u16 flag_rtos = 1;
 u16	flag_rtos_key1 = 0;
 u16	flag_rtos_key2 = 0;
 
-u16 Usart_Rx_Buf[USART_RBUFF_SIZE] = {0};
+u16 USART1_RX_BUF[USART1_REC_LEN] = {0};
 
 
 void USART1_Init(void)
@@ -108,7 +104,7 @@ int fputc(int Cy1, FILE *f)
 	return Cy1;
 }
 
-void Serial_Printf(char *format, ...)
+void USART1_printf(char *format, ...)
 {
 	char String[100];
 	va_list arg;
@@ -127,7 +123,7 @@ void USART1_IRQHandler(void)
 		int i;
 		static u8 RxCounter=0;
 		static u16 RxBuffer[100]={0};
-		static u8 RxState = 0;	
+		static u8 RxLock = 0;	
 		static u8 RxFlag1 = 0;
 
 		if( USART_GetITStatus(USART1,USART_IT_RXNE)!=RESET)  	   //接收中断  
@@ -136,67 +132,51 @@ void USART1_IRQHandler(void)
 			
 			com_data = USART_ReceiveData(USART1);
         
-            if(RxState==0&&com_data==Package_head1) 
-            {
-                RxState=1;
-                RxBuffer[RxCounter]=com_data;
-                RxCounter++;
-                
-            }
-            if(RxState==1&&com_data==Package_head2) 
-            {
-                RxState=2;
-                RxBuffer[RxCounter]=com_data;
-            }
-    
-            if(RxState==2) //0x5b结束位
+            if(RxLock==0) 
             {
                 RxBuffer[RxCounter]=com_data;
                 RxCounter++;
-                if(com_data == Package_tail)
+                if(com_data == '\n')
                 {
-                    RxState=3;
+                    RxLock=1;
                     RxFlag1=1;
+					RxCounter--;
                 }
             }
-        }
-    
-            if(RxState==3)		//检测是否接受到结束标志
+            if(RxLock==1)		//检测是否接受到结束标志
             {
-                if(RxBuffer[RxCounter-1] == Package_tail)
+                if(RxBuffer[RxCounter] == '\n')
                 {
                     USART_ITConfig(USART1,USART_IT_RXNE,DISABLE);//关闭DTSABLE中断
                     if(RxFlag1)
                     {
 /********************************执行程序************************************************************/ 	
               
-		Usart_Rx_Buf[0]=RxCounter+1;				
+		USART1_RX_BUF[0]=RxCounter+1;				
         for(i=0;i<RxCounter;i++){
-			Usart_Rx_Buf[i+1] = RxBuffer[i];
-            USART2_printf("%c",RxBuffer[i]);
+			USART1_RX_BUF[i+1] = RxBuffer[i];
+            USART1_printf("%c",RxBuffer[i]);
         }
-        USART2_printf("\n");   
-		
-		
+        USART1_printf("\n");   
 
-				
 /****************************************************************************************************/	
                                     
                     }
                         RxFlag1 = 0;
                         RxCounter = 0;
-                        RxState = 0;
+                        RxLock = 0;
                         USART_ITConfig(USART1,USART_IT_RXNE,ENABLE);
                 }
                 else   //接收错误
                 {
-                    RxState = 0;
+                    RxLock = 0;
                     RxCounter=0;
-                    for(i=0;i<USART_RBUFF_SIZE;i++)
+                    for(i=0;i<USART1_REC_LEN;i++)
                     {
                         RxBuffer[i]=0x00;      //将存放数据数组清零
                     }
                 }
             } 
+		}
 }
 

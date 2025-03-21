@@ -31,7 +31,7 @@
 .\objects\usart23.o: .\Library\misc.h
 .\objects\usart23.o: .\Hardware\OLED.h
 .\objects\usart23.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\usart23.o: .\Hardware\Serial.h
+.\objects\usart23.o: .\Hardware\USART1.h
 .\objects\usart23.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\usart23.o: .\Hardware\timer.h
 .\objects\usart23.o: .\Hardware\Electromagnet.h

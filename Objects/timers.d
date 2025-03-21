@@ -32,9 +32,6 @@
 .\objects\timers.o: .\Library\stm32f10x_usart.h
 .\objects\timers.o: .\Library\stm32f10x_wwdg.h
 .\objects\timers.o: .\Library\misc.h
-.\objects\timers.o: .\Hardware\Serial.h
-.\objects\timers.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\timers.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\timers.o: .\FreeRTOS\port\include\projdefs.h
 .\objects\timers.o: .\FreeRTOS\port\include\portable.h
 .\objects\timers.o: .\FreeRTOS\port\include\deprecated_definitions.h

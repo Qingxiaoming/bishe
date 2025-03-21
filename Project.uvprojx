@@ -10,13 +10,13 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060528::V5.06 update 5 (build 528)::ARMCC</pCCUsed>
+      <pCCUsed>5050169::V5.05 update 2 (build 169)::ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F103C8</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F1xx_DFP.2.2.0</PackID>
+          <PackID>Keil.STM32F1xx_DFP.1.1.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x5000) IROM(0x08000000,0x10000) CPUTYPE("Cortex-M3") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -324,6 +324,7 @@
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>1</uC99>
+            <uGnu>0</uGnu>
             <useXO>0</useXO>
             <v6Lang>1</v6Lang>
             <v6LangP>1</v6LangP>
@@ -681,11 +682,6 @@
               <FilePath>.\System\Delay.c</FilePath>
             </File>
             <File>
-              <FileName>Serial.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Hardware\Serial.c</FilePath>
-            </File>
-            <File>
               <FileName>Mat_key.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Hardware\Mat_key.c</FilePath>
@@ -714,6 +710,11 @@
               <FileName>TestUI.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Hardware\OLED\TESTUI\TestUI.c</FilePath>
+            </File>
+            <File>
+              <FileName>USART1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\USART1.c</FilePath>
             </File>
             <File>
               <FileName>USART23.c</FileName>

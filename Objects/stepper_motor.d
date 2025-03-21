@@ -32,7 +32,7 @@
 .\objects\stepper_motor.o: .\User\sys.h
 .\objects\stepper_motor.o: .\Hardware\OLED.h
 .\objects\stepper_motor.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\stepper_motor.o: .\Hardware\Serial.h
+.\objects\stepper_motor.o: .\Hardware\USART1.h
 .\objects\stepper_motor.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\stepper_motor.o: .\Hardware\timer.h
 .\objects\stepper_motor.o: .\Hardware\Electromagnet.h

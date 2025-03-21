@@ -32,9 +32,6 @@
 .\objects\list.o: .\Library\stm32f10x_usart.h
 .\objects\list.o: .\Library\stm32f10x_wwdg.h
 .\objects\list.o: .\Library\misc.h
-.\objects\list.o: .\Hardware\Serial.h
-.\objects\list.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\list.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\list.o: .\FreeRTOS\port\include\projdefs.h
 .\objects\list.o: .\FreeRTOS\port\include\portable.h
 .\objects\list.o: .\FreeRTOS\port\include\deprecated_definitions.h

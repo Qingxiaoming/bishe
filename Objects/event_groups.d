@@ -32,9 +32,6 @@
 .\objects\event_groups.o: .\Library\stm32f10x_usart.h
 .\objects\event_groups.o: .\Library\stm32f10x_wwdg.h
 .\objects\event_groups.o: .\Library\misc.h
-.\objects\event_groups.o: .\Hardware\Serial.h
-.\objects\event_groups.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\event_groups.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\event_groups.o: .\FreeRTOS\port\include\projdefs.h
 .\objects\event_groups.o: .\FreeRTOS\port\include\portable.h
 .\objects\event_groups.o: .\FreeRTOS\port\include\deprecated_definitions.h

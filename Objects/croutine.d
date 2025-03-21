@@ -31,9 +31,6 @@
 .\objects\croutine.o: .\Library\stm32f10x_usart.h
 .\objects\croutine.o: .\Library\stm32f10x_wwdg.h
 .\objects\croutine.o: .\Library\misc.h
-.\objects\croutine.o: .\Hardware\Serial.h
-.\objects\croutine.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\croutine.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\croutine.o: .\FreeRTOS\port\include\projdefs.h
 .\objects\croutine.o: .\FreeRTOS\port\include\portable.h
 .\objects\croutine.o: .\FreeRTOS\port\include\deprecated_definitions.h

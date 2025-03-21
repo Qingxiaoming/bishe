@@ -31,7 +31,7 @@
 .\objects\timer.o: .\User\sys.h
 .\objects\timer.o: .\Hardware\OLED.h
 .\objects\timer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\timer.o: .\Hardware\Serial.h
+.\objects\timer.o: .\Hardware\USART1.h
 .\objects\timer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\timer.o: .\Hardware\timer.h
 .\objects\timer.o: .\Hardware\Electromagnet.h

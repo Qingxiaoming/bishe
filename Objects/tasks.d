@@ -33,9 +33,6 @@
 .\objects\tasks.o: .\Library\stm32f10x_usart.h
 .\objects\tasks.o: .\Library\stm32f10x_wwdg.h
 .\objects\tasks.o: .\Library\misc.h
-.\objects\tasks.o: .\Hardware\Serial.h
-.\objects\tasks.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\tasks.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\tasks.o: .\FreeRTOS\port\include\projdefs.h
 .\objects\tasks.o: .\FreeRTOS\port\include\portable.h
 .\objects\tasks.o: .\FreeRTOS\port\include\deprecated_definitions.h
@@ -45,3 +42,4 @@
 .\objects\tasks.o: .\FreeRTOS\port\include\list.h
 .\objects\tasks.o: .\FreeRTOS\port\include\timers.h
 .\objects\tasks.o: .\FreeRTOS\port\include\StackMacros.h
+.\objects\tasks.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

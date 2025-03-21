@@ -33,9 +33,6 @@
 .\objects\queue.o: .\Library\stm32f10x_usart.h
 .\objects\queue.o: .\Library\stm32f10x_wwdg.h
 .\objects\queue.o: .\Library\misc.h
-.\objects\queue.o: .\Hardware\Serial.h
-.\objects\queue.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\queue.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\queue.o: .\FreeRTOS\port\include\projdefs.h
 .\objects\queue.o: .\FreeRTOS\port\include\portable.h
 .\objects\queue.o: .\FreeRTOS\port\include\deprecated_definitions.h

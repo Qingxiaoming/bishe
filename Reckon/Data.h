@@ -4,7 +4,7 @@
 #include "stm32f10x.h"
 #include "OLED.h"
 #include "Mat_key.h"
-#include "Serial.h"
+//#include "Serial.h"
 
 void show_OLED_keyitem(void);
 void keyitem(void);

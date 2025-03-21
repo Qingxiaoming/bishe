@@ -33,5 +33,3 @@
 .\objects\data.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\data.o: .\Hardware\Mat_key.h
 .\objects\data.o: .\System\Delay.h
-.\objects\data.o: .\Hardware\Serial.h
-.\objects\data.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h

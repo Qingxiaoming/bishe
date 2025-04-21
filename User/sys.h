@@ -3,10 +3,8 @@
 
 #include "stm32f10x.h"
 
-
-
 #include "OLED.h"
-#include "Serial.h"
+#include "USART1.h"
 #include "timer.h"
 
 
@@ -17,8 +15,6 @@
 #include "game.h"
 #include "Data.h"
 
-
-//#include "bsp_TiMbase.h" 
 
 #include "FreeRTOS.h" 
 #include "task.h"
@@ -31,8 +27,6 @@
 
 #include "TestUI.h"
 #include "USART23.h"
-
-#include "reckon.h"  // 添加对reckon.h的引用
 
 #include <string.h> 
 

@@ -1,35 +1,35 @@
 
-// ������ʱ��TIMx,x[6,7]��ʱ��ʼ������
+// ������ʱ��TIMx,x[6,7]��ʱ��ʼ������
 
 #include "bsp_TiMbase.h" 
 
-// �ж����ȼ�����
+// �ж����ȼ�����
 static void BASIC_TIM_NVIC_Config(void)
 {
     NVIC_InitTypeDef NVIC_InitStructure; 
-    // �����ж���Ϊ0
+    // �����ж���Ϊ0
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);		
-		// �����ж���Դ
+		// �����ж���Դ
     NVIC_InitStructure.NVIC_IRQChannel = BASIC_TIM_IRQ ;	
-		// ���������ȼ�Ϊ 0
+		// ���������ȼ�Ϊ 0
     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 3;	 
-	  // ������ռ���ȼ�Ϊ3
+	  // ������ռ���ȼ�Ϊ3
     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;	
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
 }
 
 /*
- * ע�⣺TIM_TimeBaseInitTypeDef�ṹ��������5����Ա��TIM6��TIM7�ļĴ�������ֻ��
- * TIM_Prescaler��TIM_Period������ʹ��TIM6��TIM7��ʱ��ֻ���ʼ����������Ա���ɣ�
- * ����������Ա��ͨ�ö�ʱ���͸߼���ʱ������.
+ * ע�⣺TIM_TimeBaseInitTypeDef�ṹ��������5����Ա��TIM6��TIM7�ļĴ�������ֻ��
+ * TIM_Prescaler��TIM_Period������ʹ��TIM6��TIM7��ʱ��ֻ���ʼ����������Ա���ɣ�
+ * ����������Ա��ͨ�ö�ʱ���͸߼���ʱ������.
  *-----------------------------------------------------------------------------
  *typedef struct
- *{ TIM_Prescaler            ����
- *	TIM_CounterMode			     TIMx,x[6,7]û�У���������
- *  TIM_Period               ����
- *  TIM_ClockDivision        TIMx,x[6,7]û�У���������
- *  TIM_RepetitionCounter    TIMx,x[1,8,15,16,17]����
+ *{ TIM_Prescaler            ����
+ *	TIM_CounterMode			     TIMx,x[6,7]û�У���������
+ *  TIM_Period               ����
+ *  TIM_ClockDivision        TIMx,x[6,7]û�У���������
+ *  TIM_RepetitionCounter    TIMx,x[1,8,15,16,17]����
  *}TIM_TimeBaseInitTypeDef; 
  *-----------------------------------------------------------------------------
  */
@@ -39,112 +39,34 @@ static void BASIC_TIM_Mode_Config(void)
 {
     TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
 		
-		// ������ʱ��ʱ��,���ڲ�ʱ��CK_INT=72M
+		// ������ʱ��ʱ��,���ڲ�ʱ��CK_INT=72M
     BASIC_TIM_APBxClock_FUN(BASIC_TIM_CLK, ENABLE);
 	
-		// �Զ���װ�ؼĴ�����ֵ���ۼ�TIM_Period+1��Ƶ�ʺ����һ�����»����ж�
+		// �Զ���װ�ؼĴ�����ֵ���ۼ�TIM_Period+1��Ƶ�ʺ����һ�����»����ж�
     TIM_TimeBaseStructure.TIM_Period = BASIC_TIM_Period;	
 
-	  // ʱ��Ԥ��Ƶ��Ϊ
+	  // ʱ��Ԥ��Ƶ��Ϊ
     TIM_TimeBaseStructure.TIM_Prescaler= BASIC_TIM_Prescaler;
 	
-		// ʱ�ӷ�Ƶ���� ��������ʱ��û�У����ù�
+		// ʱ�ӷ�Ƶ���� ��������ʱ��û�У����ù�
     //TIM_TimeBaseStructure.TIM_ClockDivision=TIM_CKD_DIV1;
 		
-		// ����������ģʽ��������ʱ��ֻ�����ϼ�����û�м���ģʽ������
+		// ����������ģʽ��������ʱ��ֻ�����ϼ�����û�м���ģʽ������
     //TIM_TimeBaseStructure.TIM_CounterMode=TIM_CounterMode_Up; 
 		
-		// �ظ���������ֵ��������ʱ��û�У����ù�
+		// �ظ���������ֵ��������ʱ��û�У����ù�
 		//TIM_TimeBaseStructure.TIM_RepetitionCounter=0;
 	
-	  // ��ʼ����ʱ��
+	  // ��ʼ����ʱ��
     TIM_TimeBaseInit(BASIC_TIM, &TIM_TimeBaseStructure);
 		
-		// ����������жϱ�־λ
+		// ����������жϱ�־λ
     TIM_ClearFlag(BASIC_TIM, TIM_FLAG_Update);
 	  
-		// �����������ж�
+		// �����������ж�
     TIM_ITConfig(BASIC_TIM,TIM_IT_Update,ENABLE);
 		
-		// ʹ�ܼ�����
-    TIM_Cmd(BASIC_TIM, ENABLE);	
-}
-
-void BASIC_TIM_Init(void)
-{
-	BASIC_TIM_NVIC_Config();
-	BASIC_TIM_Mode_Config();
-}
-/*********************************************END OF FILE**********************/
-
-// 基本定时器TIMx,x[6,7]的初始化程序
-
-#include "bsp_TiMbase.h" 
-
-// 中断优先级配置
-static void BASIC_TIM_NVIC_Config(void)
-{
-    NVIC_InitTypeDef NVIC_InitStructure; 
-    // 设置中断组为0
-    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);		
-	// 设置中断来源
-    NVIC_InitStructure.NVIC_IRQChannel = BASIC_TIM_IRQ ;	
-	// 设置主优先级为 0
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 3;	 
-	// 设置抢占优先级为3
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;	
-    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-    NVIC_Init(&NVIC_InitStructure);
-}
-
-/*
- * 注意：TIM_TimeBaseInitTypeDef结构体里面有5个成员，TIM6和TIM7的寄存器里面只有
- * TIM_Prescaler和TIM_Period，所以使用TIM6和TIM7的时候只需初始化这两个成员即可，
- * 另外三个成员是通用定时器和高级定时器才有.
- *-----------------------------------------------------------------------------
- *typedef struct
- *{ TIM_Prescaler            预分频
- *	TIM_CounterMode			 TIMx,x[6,7]没有，不用设置
- *  TIM_Period               周期
- *  TIM_ClockDivision        TIMx,x[6,7]没有，不用设置
- *  TIM_RepetitionCounter    TIMx,x[1,8,15,16,17]才有
- *}TIM_TimeBaseInitTypeDef; 
- *-----------------------------------------------------------------------------
- */
-
-
-static void BASIC_TIM_Mode_Config(void)
-{
-    TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
-		
-	// 开启定时器时钟,即内部时钟CK_INT=72M
-    BASIC_TIM_APBxClock_FUN(BASIC_TIM_CLK, ENABLE);
-	
-	// 自动重装载寄存器的值，累计TIM_Period+1个频率后产生一个更新或者中断
-    TIM_TimeBaseStructure.TIM_Period = BASIC_TIM_Period;	
-
-	// 时钟预分频因子
-    TIM_TimeBaseStructure.TIM_Prescaler= BASIC_TIM_Prescaler;
-	
-	// 时钟分频因子 ，基本定时器没有，不用管
-    //TIM_TimeBaseStructure.TIM_ClockDivision=TIM_CKD_DIV1;
-		
-	// 计数器计数模式，基本定时器只能向上计数，没有计数模式的设置
-    //TIM_TimeBaseStructure.TIM_CounterMode=TIM_CounterMode_Up; 
-		
-	// 重复计数器的值，基本定时器没有，不用管
-	//TIM_TimeBaseStructure.TIM_RepetitionCounter=0;
-	
-	// 初始化定时器
-    TIM_TimeBaseInit(BASIC_TIM, &TIM_TimeBaseStructure);
-		
-	// 清除计数器中断标志位
-    TIM_ClearFlag(BASIC_TIM, TIM_FLAG_Update);
-	  
-	// 开启计数器中断
-    TIM_ITConfig(BASIC_TIM,TIM_IT_Update,ENABLE);
-		
-	// 使能计数器
+		// ʹ�ܼ�����
     TIM_Cmd(BASIC_TIM, ENABLE);	
 }
 

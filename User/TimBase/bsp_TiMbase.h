@@ -5,10 +5,10 @@
 #include "stm32f10x.h"
 
 
-/********************ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½TIMï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å£¬Ö»ï¿½ï¿½TIM6ï¿½ï¿½7************/
-#define BASIC_TIM6 // ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½TIM7ï¿½ï¿½×¢ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½ê¼´ï¿½ï¿½
+/********************»ù±¾¶¨Ê±Æ÷TIM²ÎÊı¶¨Òå£¬Ö»ÏŞTIM6¡¢7************/
+#define BASIC_TIM6 // Èç¹ûÊ¹ÓÃTIM7£¬×¢ÊÍµôÕâ¸öºê¼´¿É
 
-#ifdef  BASIC_TIM6 // Ê¹ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½TIM6
+#ifdef  BASIC_TIM6 // Ê¹ÓÃ»ù±¾¶¨Ê±Æ÷TIM6
 #define            BASIC_TIM                   TIM6
 #define            BASIC_TIM_APBxClock_FUN     RCC_APB1PeriphClockCmd
 #define            BASIC_TIM_CLK               RCC_APB1Periph_TIM6
@@ -17,7 +17,7 @@
 #define            BASIC_TIM_IRQ               TIM6_IRQn
 #define            BASIC_TIM_IRQHandler        TIM6_IRQHandler
 
-#else  // Ê¹ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½TIM7
+#else  // Ê¹ÓÃ»ù±¾¶¨Ê±Æ÷TIM7
 #define            BASIC_TIM                   TIM7
 #define            BASIC_TIM_APBxClock_FUN     RCC_APB1PeriphClockCmd
 #define            BASIC_TIM_CLK               RCC_APB1Periph_TIM7
@@ -27,45 +27,7 @@
 #define            BASIC_TIM_IRQHandler        TIM7_IRQHandler
 
 #endif
-/**************************ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½********************************/
-
-void BASIC_TIM_Init(void);
-
-
-#endif	/* __BSP_TIMEBASE_H */
-
-
-
-#ifndef __BSP_TIMEBASE_H
-#define __BSP_TIMEBASE_H
-
-
-#include "stm32f10x.h"
-
-
-/********************åŸºæœ¬å®šæ—¶å™¨TIMç›¸å…³å®šä¹‰ï¼Œåªæœ‰TIM6å’Œ7************/
-#define BASIC_TIM6 // å¦‚æœä½¿ç”¨TIM7ï¼Œæ³¨é‡Šæ‰è¿™ä¸ªå®å³å¯
-
-#ifdef  BASIC_TIM6 // ä½¿ç”¨åŸºæœ¬å®šæ—¶å™¨TIM6
-#define            BASIC_TIM                   TIM6
-#define            BASIC_TIM_APBxClock_FUN     RCC_APB1PeriphClockCmd
-#define            BASIC_TIM_CLK               RCC_APB1Periph_TIM6
-#define            BASIC_TIM_Period            1000-1
-#define            BASIC_TIM_Prescaler         71
-#define            BASIC_TIM_IRQ               TIM6_IRQn
-#define            BASIC_TIM_IRQHandler        TIM6_IRQHandler
-
-#else  // ä½¿ç”¨åŸºæœ¬å®šæ—¶å™¨TIM7
-#define            BASIC_TIM                   TIM7
-#define            BASIC_TIM_APBxClock_FUN     RCC_APB1PeriphClockCmd
-#define            BASIC_TIM_CLK               RCC_APB1Periph_TIM7
-#define            BASIC_TIM_Period            1000-1
-#define            BASIC_TIM_Prescaler         71
-#define            BASIC_TIM_IRQ               TIM7_IRQn
-#define            BASIC_TIM_IRQHandler        TIM7_IRQHandler
-
-#endif
-/**************************å‡½æ•°å£°æ˜********************************/
+/**************************º¯ÊıÉùÃ÷********************************/
 
 void BASIC_TIM_Init(void);
 
